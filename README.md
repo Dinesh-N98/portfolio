@@ -1,6 +1,7 @@
-# Dinesh Kumara Portfolio
+# Dinesh Kumara
+`Portfolio`
 
-Personal portfolio website for Dinesh Kumara, built to showcase projects, skills, and professional experience.
+Personal portfolio website, built to showcase projects, skills, and professional experience.
 
 GitHub: [Dinesh-N98](https://github.com/Dinesh-N98)
 
