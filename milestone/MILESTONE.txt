@@ -1,0 +1,106 @@
+MILESTONE 1: Layout Shell
+Build the base layout for a multi-page Next.js/React portfolio.
+- Navbar: sticky, responsive, mobile hamburger menu, links to Home/Projects/Blog/About/News/Contact
+- Footer: social links, copyright, small nav links
+- Base layout wrapper component that wraps every page (consistent padding, max-width container, font/theme setup)
+- Set up global styles/theme (Tailwind config or CSS variables): colors, typography, spacing tokens
+Output: layout components + a working shell that renders on an empty page.
+===========================================================================================
+
+MILESTONE 2: Shared Data Structures (Projects, Blog, News/Timeline)
+Before building any pages, define the shared data shape for ALL content types used across
+the site — Projects, Blog, and News/Timeline — even though Blog and News content won't be
+built out until later milestones. Settling the shape now avoids reshaping components (like
+Timeline, reused on both About and News) after they're already built.
+Use JSON or Markdown/MDX frontmatter (specify which).
+
+Project entry fields:
+- slug, title, image, shortDescription, fullDescription, tags[], featured (boolean),
+  date, status, techStack[], links (optional: demo, repo)
+
+Blog post entry fields:
+- slug, title, coverImage, excerpt, content, tags[], date
+
+News/update entry fields (also the shape the Timeline component consumes):
+- title, date, description, category (optional, e.g. "Milestone" / "Project" / "Personal")
+
+Create a few sample/placeholder entries for each so pages can be built and previewed
+before real content exists. Also define and implement the empty-state case for each content
+type (what renders when a list has 0 entries) — this matters early since you'll be building
+and demoing pages before real content is written.
+===========================================================================================
+
+MILESTONE 3: Projects System
+Using the Project data structure from Milestone 2, build:
+1. ProjectCard component — image, title, short description, tags, "View More" button
+   linking to /projects/[slug]
+2. Projects grid page (/projects) — responsive grid (3 cols desktop, 2 tablet, 1 mobile),
+   pulls all projects from shared data, optional filter bar (All / Hot / Recent / by tag)
+3. Project detail page (/projects/[slug]) — full image(s), full description, tech stack,
+   date/status, links (demo/repo), back button to Projects page
+Make ProjectCard accessible (semantic HTML, alt text, keyboard-focusable link).
+Check grid responsiveness (mobile/tablet/desktop) as you build this milestone, not saved
+for the Polish pass — easier to fix one component now than several at once later.
+===========================================================================================
+
+MILESTONE 4: Home Page + Carousels
+Build the Home page using the layout shell:
+1. Hero section — name, short intro, CTA (e.g., "See my work")
+2. "Hot Projects" carousel — larger cards (1-2 visible desktop, 1 mobile), pulls projects
+   where featured: true from the shared Projects data, prev/next arrows, pagination dots,
+   swipe support, keyboard navigable, ARIA labels
+3. "Recent Projects" carousel — compact cards (3-4 visible desktop, 1-2 mobile), auto-sorted
+   by date descending, same accessibility requirements
+4. "See All Projects" link below the carousels → /projects
+5. Blog preview section (placeholder using sample Blog data from Milestone 2) — 2-3 latest
+   post cards + "See All Posts" link → /blog
+Bake in accessibility (keyboard arrows, ARIA labels, focus management) and mobile
+touch/swipe testing while building each carousel, not as a retrofit later — carousels are
+the easiest component to accidentally break on mobile.
+Also verify the empty-state (0 featured projects, 0 recent projects) renders sensibly.
+===========================================================================================
+
+MILESTONE 5: Blog System
+Using the Blog data structure from Milestone 2, build:
+1. BlogPostCard component — cover image, title, excerpt, date, tags, links to /blog/[slug]
+2. Blog list page (/blog) — list or grid of BlogPostCard, sorted by date descending
+3. Blog detail page (/blog/[slug]) — full content (Markdown/MDX rendered), title, date,
+   tags, back button to Blog page
+Verify the empty-state (0 posts) renders sensibly, and check responsiveness as you go.
+===========================================================================================
+
+MILESTONE 6: Timeline Component + About Page
+Build a reusable Timeline component (vertical or horizontal) that takes an array of
+{title, date, description, category?} entries and renders them chronologically.
+
+About page (/about):
+- Bio section (who I am, background, what I do)
+- Skills/focus areas section
+- Timeline component showing career/project journey
+Keep the Timeline generic enough to reuse as-is on the News page (data shape already
+settled in Milestone 2).
+===========================================================================================
+
+MILESTONE 7: News Page
+Build the News page (/news) reusing the Timeline component from Milestone 6, populated
+with the News/update data from Milestone 2 — a changelog-style feed of personal and
+project updates, most recent first. Verify the empty-state (0 updates) renders sensibly.
+===========================================================================================
+
+MILESTONE 8: Contact Page
+Build a simple Contact page (/contact):
+- Contact form (name, email, message) OR simple mailto + social links (specify preference)
+- No "hire me" / job-seeking language — keep it personal/professional tone
+- Accessible form labels and validation states if using a form
+===========================================================================================
+
+MILESTONE 9: Polish Pass
+1. SEO: meta tags (title, description, Open Graph) per page, generate sitemap.xml,
+   robots.txt
+2. Accessibility audit: final sweep across all pages/components for ARIA labels, keyboard
+   navigation, color contrast, alt text (most of this should already be in place if baked
+   in per-milestone as noted above — this is a verification pass, not first pass)
+3. Responsive audit: final sweep across all pages/components (especially carousels) on
+   mobile, tablet, desktop
+4. Performance: lazy-load images, check code splitting, run Lighthouse and fix flagged issues
+5. Final content review: replace all placeholder/sample data with real content
