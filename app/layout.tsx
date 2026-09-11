@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Space_Grotesk } from "next/font/google";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import PageWrapper from "@/components/layout/PageWrapper";
 import "./globals.css";
+
+interface RootLayoutProps {
+  children: ReactNode;
+}
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -15,7 +20,7 @@ export const metadata: Metadata = {
   description: "A personal portfolio site for Dinesh Narada.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={`${spaceGrotesk.variable} flex min-h-screen flex-col`}>
