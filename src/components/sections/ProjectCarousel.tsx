@@ -9,9 +9,10 @@ import type { Project } from "@/src/types/content";
 interface ProjectCarouselProps {
   projects: Project[];
   variant: "hot" | "recent";
+  languageStats?: Record<string, number>;
 }
 
-export default function ProjectCarousel({ projects, variant }: ProjectCarouselProps) {
+export default function ProjectCarousel({ projects, variant, languageStats = {} }: ProjectCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", containScroll: "trimSnaps" });
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
@@ -66,7 +67,7 @@ export default function ProjectCarousel({ projects, variant }: ProjectCarouselPr
         <div className="-ml-4 flex" aria-live="polite">
           {projects.map((project, index) => (
             <div key={project.slug} className={`min-w-0 shrink-0 grow-0 pl-4 ${slideSize}`}>
-              <ProjectCard project={project} priority={index === 0} />
+              <ProjectCard project={project} priority={index === 0} languageStats={languageStats} />
             </div>
           ))}
         </div>

@@ -21,11 +21,6 @@ export async function getRecentProjects(): Promise<Project[]> {
     .slice(0, 6);
 }
 
-export async function getProjectBySlug(slug: string): Promise<Project | undefined> {
-  const projects = await getAllProjects();
-  return projects.find((project) => project.slug === slug);
-}
-
 export function getAllBlogPosts(): BlogPost[] {
   return [...blogPosts].sort((a, b) => b.date.localeCompare(a.date));
 }

@@ -4,6 +4,7 @@ import BlogPostCard from "@/src/components/sections/BlogPostCard";
 import Hero from "@/src/components/sections/Hero";
 import ProjectCarousel from "@/src/components/sections/ProjectCarousel";
 import { getAllBlogPosts, getFeaturedProjects, getRecentProjects } from "@/src/lib/content";
+import { getGlobalLanguageStats } from "@/src/lib/github";
 import { createPageMetadata } from "@/src/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata(
@@ -12,7 +13,11 @@ export const metadata: Metadata = createPageMetadata(
 );
 
 export default async function Home() {
-  const [featuredProjects, recentProjects] = await Promise.all([getFeaturedProjects(), getRecentProjects()]);
+  const [featuredProjects, recentProjects, languageStats] = await Promise.all([
+    getFeaturedProjects(),
+    getRecentProjects(),
+    getGlobalLanguageStats(),
+  ]);
   const blogPosts = getAllBlogPosts().slice(0, 3);
 
   return (
@@ -31,7 +36,7 @@ export default async function Home() {
             See All Projects -&gt;
           </Link>
         </div>
-        <ProjectCarousel variant="hot" projects={featuredProjects} />
+        <ProjectCarousel variant="hot" projects={featuredProjects} languageStats={languageStats} />
       </section>
 
       <section className="border-b border-white/10 py-16 md:py-20" aria-labelledby="recent-projects-heading">
@@ -46,7 +51,7 @@ export default async function Home() {
             See All Projects -&gt;
           </Link>
         </div>
-        <ProjectCarousel variant="recent" projects={recentProjects} />
+        <ProjectCarousel variant="recent" projects={recentProjects} languageStats={languageStats} />
       </section>
 
       <section className="py-16 md:py-20" aria-labelledby="blog-preview-heading">

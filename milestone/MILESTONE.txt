@@ -32,12 +32,12 @@ and demoing pages before real content is written.
 
 MILESTONE 3: Projects System
 Using the Project data structure from Milestone 2, build:
-1. ProjectCard component — image, title, short description, tags, "View More" button
-   linking to /projects/[slug]
+1. ProjectCard component — image, title, short description, tags, and a "View Repository"
+   button linking to each project's GitHub repository
 2. Projects grid page (/projects) — responsive grid (3 cols desktop, 2 tablet, 1 mobile),
    pulls all projects from shared data, optional filter bar (All / Hot / Recent / by tag)
-3. Project detail page (/projects/[slug]) — full image(s), full description, tech stack,
-   date/status, links (demo/repo), back button to Projects page
+3. Project details are represented by the linked GitHub repositories rather than internal
+   project detail pages.
 Make ProjectCard accessible (semantic HTML, alt text, keyboard-focusable link).
 Check grid responsiveness (mobile/tablet/desktop) as you build this milestone, not saved
 for the Polish pass — easier to fix one component now than several at once later.
