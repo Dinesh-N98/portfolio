@@ -1,6 +1,6 @@
 import type { Project } from "@/src/types/content";
 
-const EXCLUDED_REPOS = ["portfolio"];
+const EXCLUDED_REPOS: string[] = [];
 const NINETY_DAYS = 90 * 24 * 60 * 60 * 1000;
 
 interface GitHubRepository {
@@ -11,6 +11,7 @@ interface GitHubRepository {
   archived: boolean;
   language: string | null;
   created_at: string;
+  pushed_at: string;
   updated_at: string;
   html_url: string;
   homepage: string | null;
@@ -66,6 +67,7 @@ export async function getGitHubProjects(): Promise<Project[]> {
           tags,
           featured: false,
           date: repo.created_at,
+          pushedAt: repo.pushed_at,
           status: getStatus(repo.updated_at),
           techStack,
           links: { repo: repo.html_url, demo: repo.homepage || undefined },

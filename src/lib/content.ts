@@ -16,7 +16,9 @@ export async function getFeaturedProjects(): Promise<Project[]> {
 
 export async function getRecentProjects(): Promise<Project[]> {
   const projects = await getAllProjects();
-  return [...projects].sort((a, b) => b.date.localeCompare(a.date));
+  return [...projects]
+    .sort((a, b) => Date.parse(b.pushedAt ?? "") - Date.parse(a.pushedAt ?? ""))
+    .slice(0, 6);
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | undefined> {

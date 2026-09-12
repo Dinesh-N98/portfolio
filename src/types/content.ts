@@ -7,6 +7,7 @@ export interface Project {
   tags: string[];
   featured: boolean;
   date: string;
+  pushedAt?: string;
   status: "Completed" | "Ongoing";
   techStack: string[];
   links?: {
