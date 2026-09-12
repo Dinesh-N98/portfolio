@@ -19,5 +19,11 @@ export function createPageMetadata(title: string, description: string): Metadata
       type: "website",
       images: [defaultOgImage],
     },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [defaultOgImage.url],
+    },
   };
 }

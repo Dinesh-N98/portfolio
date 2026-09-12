@@ -31,10 +31,10 @@ export default function ProjectThumbnail({ title, image, primaryLanguage }: Proj
 
       {image ? (
         <div className="relative z-10 flex h-full w-full items-center justify-center p-3 sm:p-4">
-          <div className="relative h-full w-full overflow-hidden rounded-md bg-black/10">
+          <div className="relative h-full w-full overflow-hidden rounded-md bg-black/10" aria-hidden="true">
             <Image
               src={image}
-              alt={title}
+              alt={`${title} project preview`}
               fill
               sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
               className="object-contain"

@@ -71,7 +71,13 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-6" aria-describedby="contact-status">
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="space-y-6"
+      aria-label="Contact form"
+      aria-describedby="contact-status"
+    >
       <div>
         <label htmlFor="contact-name" className="text-sm font-medium">
           Name
@@ -133,12 +139,13 @@ export default function ContactForm() {
         {isSubmitting ? "Sending..." : "Send message"}
       </button>
 
-        <p 
-            id="contact-status" 
-            aria-live="polite" 
-            className={`text-sm ${status.includes("wrong") || errors ? "text-red-400" : "text-green-400"}`}
+        <p
+          id="contact-status"
+          role="status"
+          aria-live="polite"
+          className={`text-sm ${status ? (status.toLowerCase().includes("error") || status.toLowerCase().includes("wrong") ? "text-red-400" : "text-green-400") : "text-muted"}`}
         >
-        {status}
+          {status}
         </p>
     </form>
   );
