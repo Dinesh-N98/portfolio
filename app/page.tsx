@@ -11,9 +11,8 @@ export const metadata: Metadata = createPageMetadata(
   "A personal space for thoughtful interfaces, small tools, and the work behind them.",
 );
 
-export default function Home() {
-  const featuredProjects = getFeaturedProjects();
-  const recentProjects = getRecentProjects();
+export default async function Home() {
+  const [featuredProjects, recentProjects] = await Promise.all([getFeaturedProjects(), getRecentProjects()]);
   const blogPosts = getAllBlogPosts().slice(0, 3);
 
   return (

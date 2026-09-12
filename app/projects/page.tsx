@@ -8,8 +8,8 @@ export const metadata: Metadata = createPageMetadata(
   "Selected projects, experiments, and systems by Dinesh Narada.",
 );
 
-export default function ProjectsPage() {
-  const projects = getAllProjects();
+export default async function ProjectsPage() {
+  const projects = await getAllProjects();
   const tags = [...new Set(projects.flatMap((project) => project.tags))].sort();
 
   return (

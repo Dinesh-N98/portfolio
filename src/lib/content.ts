@@ -1,21 +1,26 @@
 import { blogPosts } from "@/src/content/blog";
 import { newsEntries } from "@/src/content/news";
-import { projects } from "@/src/content/projects";
+import { projectOverrides } from "@/src/content/projectOverrides";
+import { getGitHubProjects } from "@/src/lib/github";
 import type { BlogPost, NewsEntry, Project } from "@/src/types/content";
 
-export function getAllProjects(): Project[] {
-  return projects;
+export async function getAllProjects(): Promise<Project[]> {
+  const projects = await getGitHubProjects();
+  return projects.map((project) => ({ ...project, ...projectOverrides[project.slug] }));
 }
 
-export function getFeaturedProjects(): Project[] {
+export async function getFeaturedProjects(): Promise<Project[]> {
+  const projects = await getAllProjects();
   return projects.filter((project) => project.featured);
 }
 
-export function getRecentProjects(): Project[] {
+export async function getRecentProjects(): Promise<Project[]> {
+  const projects = await getAllProjects();
   return [...projects].sort((a, b) => b.date.localeCompare(a.date));
 }
 
-export function getProjectBySlug(slug: string): Project | undefined {
+export async function getProjectBySlug(slug: string): Promise<Project | undefined> {
+  const projects = await getAllProjects();
   return projects.find((project) => project.slug === slug);
 }
 
