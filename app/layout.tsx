@@ -4,6 +4,7 @@ import { Space_Grotesk } from "next/font/google";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import PageWrapper from "@/components/layout/PageWrapper";
+import { siteUrl } from "@/src/lib/metadata";
 import "./globals.css";
 
 interface RootLayoutProps {
@@ -18,6 +19,13 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Dinesh Narada",
   description: "A personal portfolio site for Dinesh Narada.",
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    title: "Dinesh Narada",
+    description: "A personal portfolio site for Dinesh Narada.",
+    type: "website",
+    images: [{ url: "/og-default.svg", width: 1200, height: 630, alt: "Dinesh Narada portfolio" }],
+  },
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllProjects, getProjectBySlug } from "@/src/lib/content";
+import { createPageMetadata } from "@/src/lib/metadata";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
@@ -17,8 +18,8 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   const project = getProjectBySlug(slug);
 
   return project
-    ? { title: `${project.title} | Dinesh Narada`, description: project.shortDescription }
-    : { title: "Project Not Found | Dinesh Narada" };
+    ? createPageMetadata(`${project.title} | Dinesh Narada`, project.shortDescription)
+    : createPageMetadata("Project Not Found | Dinesh Narada", "The requested project could not be found.");
 }
 
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
@@ -31,7 +32,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     <article className="py-12 md:py-20">
       <Link
         href="/projects"
-        className="inline-flex rounded-md text-sm text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+        className="inline-flex min-h-11 items-center rounded-md text-sm text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
       >
         &lt;- Back to Projects
       </Link>
@@ -71,8 +72,8 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 <a
                   href={project.links.demo}
                   target={project.links.demo.startsWith("http") ? "_blank" : undefined}
-                  rel={project.links.demo.startsWith("http") ? "noreferrer" : undefined}
-                  className="rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  rel={project.links.demo.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="inline-flex min-h-11 items-center rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   View Demo
                 </a>
@@ -81,8 +82,8 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 <a
                   href={project.links.repo}
                   target={project.links.repo.startsWith("http") ? "_blank" : undefined}
-                  rel={project.links.repo.startsWith("http") ? "noreferrer" : undefined}
-                  className="rounded-md border border-white/15 px-4 py-2.5 text-sm font-medium transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  rel={project.links.repo.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="inline-flex min-h-11 items-center rounded-md border border-white/15 px-4 py-2.5 text-sm font-medium transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   View Repository
                 </a>

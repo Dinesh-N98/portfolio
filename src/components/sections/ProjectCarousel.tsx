@@ -64,9 +64,9 @@ export default function ProjectCarousel({ projects, variant }: ProjectCarouselPr
     >
       <div className="touch-pan-y overflow-hidden" ref={emblaRef}>
         <div className="-ml-4 flex" aria-live="polite">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <div key={project.slug} className={`min-w-0 shrink-0 grow-0 pl-4 ${slideSize}`}>
-              <ProjectCard project={project} />
+              <ProjectCard project={project} priority={index === 0} />
             </div>
           ))}
         </div>
@@ -81,10 +81,15 @@ export default function ProjectCarousel({ projects, variant }: ProjectCarouselPr
               aria-label={`Go to ${carouselLabel.toLowerCase()} slide ${index + 1}`}
               aria-current={index === selectedIndex ? "true" : undefined}
               onClick={() => emblaApi?.scrollTo(index)}
-              className={`h-2.5 rounded-full transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
-                index === selectedIndex ? "w-7 bg-accent" : "w-2.5 bg-white/25 hover:bg-white/50"
-              }`}
-            />
+              className="inline-flex h-11 w-11 items-center justify-center rounded-md transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              <span
+                aria-hidden="true"
+                className={`block h-2.5 rounded-full transition-all ${
+                  index === selectedIndex ? "w-7 bg-accent" : "w-2.5 bg-white/25"
+                }`}
+              />
+            </button>
           ))}
         </div>
 
@@ -94,7 +99,7 @@ export default function ProjectCarousel({ projects, variant }: ProjectCarouselPr
             aria-label={`Previous ${carouselLabel.toLowerCase()}`}
             disabled={!canScrollPrev}
             onClick={() => emblaApi?.scrollPrev()}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/15 text-lg transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-30"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/15 text-lg transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-30"
           >
             <span aria-hidden="true">&lt;-</span>
           </button>
@@ -103,7 +108,7 @@ export default function ProjectCarousel({ projects, variant }: ProjectCarouselPr
             aria-label={`Next ${carouselLabel.toLowerCase()}`}
             disabled={!canScrollNext}
             onClick={() => emblaApi?.scrollNext()}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/15 text-lg transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-30"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/15 text-lg transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-30"
           >
             <span aria-hidden="true">-&gt;</span>
           </button>

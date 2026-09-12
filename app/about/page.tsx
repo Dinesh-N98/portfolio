@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Timeline from "@/src/components/sections/Timeline";
 import { getAllNewsEntries } from "@/src/lib/content";
+import { createPageMetadata } from "@/src/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "About | Dinesh Narada",
-  description: "A little about Dinesh Narada, the work in progress, and the ideas shaping the journey.",
-};
+export const metadata: Metadata = createPageMetadata(
+  "About | Dinesh Narada",
+  "A little about Dinesh Narada, the work in progress, and the ideas shaping the journey.",
+);
 
 const focusAreas = [
   "Next.js",

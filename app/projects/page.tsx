@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import ProjectsGrid from "@/src/components/sections/ProjectsGrid";
 import { getAllProjects } from "@/src/lib/content";
+import { createPageMetadata } from "@/src/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Projects | Dinesh Narada",
-  description: "Selected projects, experiments, and systems by Dinesh Narada.",
-};
+export const metadata: Metadata = createPageMetadata(
+  "Projects | Dinesh Narada",
+  "Selected projects, experiments, and systems by Dinesh Narada.",
+);
 
 export default function ProjectsPage() {
   const projects = getAllProjects();

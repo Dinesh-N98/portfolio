@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Timeline from "@/src/components/sections/Timeline";
 import { getAllNewsEntries } from "@/src/lib/content";
+import { createPageMetadata } from "@/src/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "News | Dinesh Narada",
-  description: "A changelog of personal notes, project updates, and the work taking shape over time.",
-};
+export const metadata: Metadata = createPageMetadata(
+  "News | Dinesh Narada",
+  "A changelog of personal notes, project updates, and the work taking shape over time.",
+);
 
 export default function NewsPage() {
   return (

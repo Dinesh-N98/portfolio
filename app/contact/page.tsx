@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import ContactForm from "@/src/components/sections/ContactForm";
+import { createPageMetadata } from "@/src/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Contact | Dinesh Narada",
-  description: "Get in touch with Dinesh Narada about a project idea, question, or conversation.",
-};
+export const metadata: Metadata = createPageMetadata(
+  "Contact | Dinesh Narada",
+  "Get in touch with Dinesh Narada about a project idea, question, or conversation.",
+);
 
 const socialLinks = [
   { href: "https://github.com/Dinesh-N98", label: "GitHub" },
@@ -39,7 +40,7 @@ export default function ContactPage() {
                 href={link.href}
                 target={link.href.startsWith("http") ? "_blank" : undefined}
                 rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="text-sm text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                  className="inline-flex min-h-11 items-center text-sm text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               >
                 {link.label}
               </a>

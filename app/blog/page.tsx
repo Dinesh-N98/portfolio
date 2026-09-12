@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import BlogPostCard from "@/src/components/sections/BlogPostCard";
 import EmptyState from "@/src/components/ui/EmptyState";
 import { getAllBlogPosts } from "@/src/lib/content";
+import { createPageMetadata } from "@/src/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Blog | Dinesh Narada",
-  description: "Notes on design, tools, interfaces, and the process behind useful work.",
-};
+export const metadata: Metadata = createPageMetadata(
+  "Blog | Dinesh Narada",
+  "Notes on design, tools, interfaces, and the process behind useful work.",
+);
 
 export default function BlogPage() {
   const posts = getAllBlogPosts();
@@ -21,8 +22,8 @@ export default function BlogPage() {
 
       {posts.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {posts.map((post) => (
-            <BlogPostCard key={post.slug} post={post} />
+          {posts.map((post, index) => (
+            <BlogPostCard key={post.slug} post={post} priority={index === 0} />
           ))}
         </div>
       ) : (

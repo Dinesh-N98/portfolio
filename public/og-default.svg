@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Dinesh Narada portfolio</title>
+  <desc id="desc">A personal portfolio for thoughtful interfaces and useful ideas.</desc>
+  <rect width="1200" height="630" fill="#0b0d10"/>
+  <circle cx="1030" cy="90" r="260" fill="#16352f"/>
+  <path d="M0 520C250 430 390 610 650 500s370-80 550 20v110H0Z" fill="#70e1c1" opacity=".16"/>
+  <text x="96" y="270" fill="#f4f1ea" font-family="Arial, sans-serif" font-size="68" font-weight="700">Dinesh Narada</text>
+  <text x="100" y="340" fill="#70e1c1" font-family="Arial, sans-serif" font-size="30">Thoughtful interfaces and useful ideas.</text>
+</svg>

@@ -24,7 +24,7 @@ export default function Footer() {
             <Link
               key={link.href}
               href={link.href}
-              className="transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-accent"
+              className="inline-flex min-h-11 items-center transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-accent"
             >
               {link.label}
             </Link>
@@ -38,7 +38,7 @@ export default function Footer() {
               href={link.href}
               target={link.href.startsWith("http") ? "_blank" : undefined}
               rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
+              className="inline-flex min-h-11 items-center transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
             >
               {link.label}
             </a>

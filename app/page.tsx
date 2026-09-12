@@ -4,11 +4,12 @@ import BlogPostCard from "@/src/components/sections/BlogPostCard";
 import Hero from "@/src/components/sections/Hero";
 import ProjectCarousel from "@/src/components/sections/ProjectCarousel";
 import { getAllBlogPosts, getFeaturedProjects, getRecentProjects } from "@/src/lib/content";
+import { createPageMetadata } from "@/src/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Dinesh Narada",
-  description: "A personal space for thoughtful interfaces, small tools, and the work behind them.",
-};
+export const metadata: Metadata = createPageMetadata(
+  "Dinesh Narada",
+  "A personal space for thoughtful interfaces, small tools, and the work behind them.",
+);
 
 export default function Home() {
   const featuredProjects = getFeaturedProjects();
@@ -26,7 +27,7 @@ export default function Home() {
           </h2>
           <Link
             href="/projects"
-            className="shrink-0 text-sm text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            className="inline-flex min-h-11 shrink-0 items-center text-sm text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             See All Projects -&gt;
           </Link>
@@ -41,7 +42,7 @@ export default function Home() {
           </h2>
           <Link
             href="/projects"
-            className="shrink-0 text-sm text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            className="inline-flex min-h-11 shrink-0 items-center text-sm text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             See All Projects -&gt;
           </Link>
@@ -56,14 +57,14 @@ export default function Home() {
           </h2>
           <Link
             href="/blog"
-            className="shrink-0 text-sm text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            className="inline-flex min-h-11 shrink-0 items-center text-sm text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             See All Posts -&gt;
           </Link>
         </div>
         <div className="grid gap-5 md:grid-cols-3">
-          {blogPosts.map((post) => (
-            <BlogPostCard key={post.slug} post={post} />
+          {blogPosts.map((post, index) => (
+            <BlogPostCard key={post.slug} post={post} priority={index === 0} />
           ))}
         </div>
       </section>

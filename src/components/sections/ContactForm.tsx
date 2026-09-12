@@ -85,7 +85,7 @@ export default function ContactForm() {
           onChange={(event) => updateField("name", event.target.value)}
           aria-invalid={Boolean(errors.name)}
           aria-describedby={errors.name ? "contact-name-error" : undefined}
-          className="mt-2 w-full rounded-md border border-white/15 bg-white/[0.03] px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted/60 focus:border-accent"
+          className="mt-2 w-full rounded-md border border-white/15 bg-white/[0.03] px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted/60 focus:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         />
         {errors.name && <p id="contact-name-error" className="mt-2 text-sm text-red-300">{errors.name}</p>}
       </div>
@@ -103,7 +103,7 @@ export default function ContactForm() {
           onChange={(event) => updateField("email", event.target.value)}
           aria-invalid={Boolean(errors.email)}
           aria-describedby={errors.email ? "contact-email-error" : undefined}
-          className="mt-2 w-full rounded-md border border-white/15 bg-white/[0.03] px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted/60 focus:border-accent"
+          className="mt-2 w-full rounded-md border border-white/15 bg-white/[0.03] px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted/60 focus:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         />
         {errors.email && <p id="contact-email-error" className="mt-2 text-sm text-red-300">{errors.email}</p>}
       </div>
@@ -120,7 +120,7 @@ export default function ContactForm() {
           onChange={(event) => updateField("message", event.target.value)}
           aria-invalid={Boolean(errors.message)}
           aria-describedby={errors.message ? "contact-message-error" : undefined}
-          className="mt-2 w-full resize-y rounded-md border border-white/15 bg-white/[0.03] px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted/60 focus:border-accent"
+          className="mt-2 w-full resize-y rounded-md border border-white/15 bg-white/[0.03] px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted/60 focus:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         />
         {errors.message && <p id="contact-message-error" className="mt-2 text-sm text-red-300">{errors.message}</p>}
       </div>

@@ -4,7 +4,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "building-a-useful-portfolio",
     title: "Building a Useful Portfolio",
-    coverImage: "/images/blog/placeholder-1.jpg",
+    coverImage: "/images/placeholder.svg",
     excerpt: "A few principles for making a portfolio helpful to the people who visit it.",
     content: `# Start with context
 
@@ -23,7 +23,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "notes-on-small-tools",
     title: "Notes on Small Tools",
-    coverImage: "/images/blog/placeholder-2.jpg",
+    coverImage: "/images/placeholder.svg",
     excerpt: "Why small, focused tools can be a better place to learn than large rewrites.",
     content: `# Keep the loop short
 
@@ -40,7 +40,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "a-quieter-interface",
     title: "A Quieter Interface",
-    coverImage: "/images/blog/placeholder-3.jpg",
+    coverImage: "/images/placeholder.svg",
     excerpt: "Exploring interfaces that give content more room to breathe.",
     content: `# Let the content breathe
 

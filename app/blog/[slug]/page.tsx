@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import { getAllBlogPosts, getBlogPostBySlug } from "@/src/lib/content";
+import { createPageMetadata } from "@/src/lib/metadata";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -22,8 +23,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const post = getBlogPostBySlug(slug);
 
   return post
-    ? { title: `${post.title} | Dinesh Narada`, description: post.excerpt }
-    : { title: "Post Not Found | Dinesh Narada" };
+    ? createPageMetadata(`${post.title} | Dinesh Narada`, post.excerpt)
+    : createPageMetadata("Post Not Found | Dinesh Narada", "The requested blog post could not be found.");
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -36,7 +37,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <article className="py-12 md:py-20">
       <Link
         href="/blog"
-        className="inline-flex rounded-md text-sm text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+        className="inline-flex min-h-11 items-center rounded-md text-sm text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
       >
         &lt;- Back to Blog
       </Link>
@@ -66,7 +67,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </header>
 
       <div className="prose prose-invert prose-lg mx-auto mt-12 max-w-3xl prose-headings:tracking-tight prose-a:text-accent prose-strong:text-foreground">
-        <ReactMarkdown>{post.content}</ReactMarkdown>
+        <ReactMarkdown components={{ h1: "h2", h2: "h3" }}>{post.content}</ReactMarkdown>
       </div>
     </article>
   );
