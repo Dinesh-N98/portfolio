@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BlogPostCard from "@/src/components/sections/BlogPostCard";
 import Hero from "@/src/components/sections/Hero";
 import ProjectCarousel from "@/src/components/sections/ProjectCarousel";
 import { getAllBlogPosts, getFeaturedProjects, getRecentProjects } from "@/src/lib/content";
@@ -8,10 +9,6 @@ export const metadata: Metadata = {
   title: "Dinesh Narada",
   description: "A personal space for thoughtful interfaces, small tools, and the work behind them.",
 };
-
-function formatDate(date: string) {
-  return new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(new Date(`${date}T00:00:00`));
-}
 
 export default function Home() {
   const featuredProjects = getFeaturedProjects();
@@ -66,20 +63,7 @@ export default function Home() {
         </div>
         <div className="grid gap-5 md:grid-cols-3">
           {blogPosts.map((post) => (
-            <article key={post.slug} className="border-l border-accent/50 pl-5">
-              <time dateTime={post.date} className="text-sm text-accent">
-                {formatDate(post.date)}
-              </time>
-              <h3 className="mt-3 text-xl font-semibold tracking-tight">
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-                >
-                  {post.title}
-                </Link>
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-muted">{post.excerpt}</p>
-            </article>
+            <BlogPostCard key={post.slug} post={post} />
           ))}
         </div>
       </section>
