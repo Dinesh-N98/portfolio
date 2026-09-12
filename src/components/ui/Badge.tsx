@@ -33,13 +33,19 @@ export default function Badge({ label, percentage, onClick, pressed, className =
       const tooltipWidth = 170;
       const padding = 12;
       const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+
       const preferredLeft = rect.left + rect.width / 2;
-      const clampedLeft = Math.min(Math.max(preferredLeft, tooltipWidth / 2 + padding), viewportWidth - tooltipWidth / 2 - padding);
-      const top = Math.max(rect.top - 10, padding);
+      const clampedLeft = Math.min(
+        Math.max(preferredLeft, tooltipWidth / 2 + padding),
+        viewportWidth - tooltipWidth / 2 - padding,
+      );
+
+      const top = rect.top - 10;
+      const left = clampedLeft;
 
       setTooltipStyle({
         position: "fixed",
-        left: `${clampedLeft}px`,
+        left: `${left}px`,
         top: `${top}px`,
         transform: "translate(-50%, -100%)",
         zIndex: 9999,
@@ -97,8 +103,9 @@ export default function Badge({ label, percentage, onClick, pressed, className =
           id={tooltipId}
           role="tooltip"
           style={tooltipStyle ?? undefined}
-          className="pointer-events-none whitespace-nowrap rounded-md border border-white/15 bg-background px-3 py-2 text-xs text-foreground opacity-100 shadow-lg"
+          className="pointer-events-none relative whitespace-nowrap rounded-md border border-white/15 bg-background px-3 py-2 text-xs text-foreground opacity-100 shadow-lg"
         >
+          <span className="absolute left-1/2 top-full -translate-x-1/2 h-0 w-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-border" aria-hidden="true" />
           {formattedPercentage}% of repositories
         </span>,
         document.body,

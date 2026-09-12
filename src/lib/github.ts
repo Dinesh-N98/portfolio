@@ -75,7 +75,7 @@ function getMeaningfulLanguageNames(languageBytes: GitHubLanguageBreakdown) {
 async function getGitHubData() {
   const username = process.env.GITHUB_USERNAME;
 
-  if (!username) return { username: "", repositories: [], languageBreakdowns: [] };
+  if (!username) return { repositories: [], languageBreakdowns: [] };
 
   const headers: HeadersInit = { Accept: "application/vnd.github+json" };
   if (process.env.GITHUB_TOKEN) {
@@ -88,7 +88,7 @@ async function getGitHubData() {
       { headers, next: { revalidate: 3600 } },
     );
 
-    if (!response.ok) return { username, repositories: [], languageBreakdowns: [] };
+    if (!response.ok) return { repositories: [], languageBreakdowns: [] };
 
     const repositories = ((await response.json()) as GitHubRepository[]).filter(
       (repo) => !repo.fork && !repo.archived && !EXCLUDED_REPOS.includes(repo.name.toLowerCase()),
@@ -97,14 +97,15 @@ async function getGitHubData() {
       repositories.map((repo) => getRepositoryLanguages(username, repo.name, headers)),
     );
 
-    return { username, repositories, languageBreakdowns };
+    return { repositories, languageBreakdowns };
   } catch {
-    return { username, repositories: [], languageBreakdowns: [] };
+    return { repositories: [], languageBreakdowns: [] };
   }
 }
 
 export async function getGitHubProjects(): Promise<Project[]> {
-  const { username, repositories, languageBreakdowns } = await getGitHubData();
+  const username = process.env.GITHUB_USERNAME ?? "";
+  const { repositories, languageBreakdowns } = await getGitHubData();
 
   return repositories.map((repo, index) => {
       const languageNames = getMeaningfulLanguageNames(languageBreakdowns[index] ?? {});
@@ -115,6 +116,7 @@ export async function getGitHubProjects(): Promise<Project[]> {
         slug: repo.name.toLowerCase(),
         title: titleCaseRepoName(repo.name),
         image: `https://opengraph.githubassets.com/1/${username}/${repo.name}`,
+        primaryLanguage: languageNames[0] ?? repo.language ?? undefined,
         shortDescription: repo.description?.trim() || "No description yet.",
         fullDescription: repo.description?.trim() || "No description yet.",
         tags,

@@ -1,7 +1,8 @@
 export interface Project {
   slug: string;
   title: string;
-  image: string;
+  image?: string;
+  primaryLanguage?: string;
   shortDescription: string;
   fullDescription: string;
   tags: string[];

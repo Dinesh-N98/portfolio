@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Badge from "@/src/components/ui/Badge";
+import ProjectThumbnail from "@/src/components/ui/ProjectThumbnail";
 import type { Project } from "@/src/types/content";
 
 interface ProjectCardProps {
@@ -8,9 +8,17 @@ interface ProjectCardProps {
   languageStats?: Record<string, number>;
 }
 
-export default function ProjectCard({ project, priority = false, languageStats = {} }: ProjectCardProps) {
+export default function ProjectCard(props: ProjectCardProps) {
+  const { project, languageStats = {} } = props;
   const repositoryUrl = project.links?.repo;
   const repositoryLabel = `View ${project.title} repository on GitHub`;
+  const primaryLanguage = project.primaryLanguage ?? project.tags[0];
+
+  const thumbnail = (
+    <div className="relative block aspect-[16/10] overflow-hidden bg-slate-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+      <ProjectThumbnail title={project.title} image={project.image} primaryLanguage={primaryLanguage} />
+    </div>
+  );
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-white/[0.03] transition-colors hover:border-accent/60">
@@ -20,28 +28,12 @@ export default function ProjectCard({ project, priority = false, languageStats =
           target="_blank"
           rel="noopener noreferrer"
           aria-label={repositoryLabel}
-          className="relative block aspect-[16/10] overflow-hidden bg-white/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className="relative block aspect-[16/10] overflow-hidden bg-slate-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            priority={priority}
-            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
-          />
+          {thumbnail}
         </a>
       ) : (
-        <div className="relative aspect-[16/10] overflow-hidden bg-white/5">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            priority={priority}
-            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="object-cover"
-          />
-        </div>
+        <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">{thumbnail}</div>
       )}
 
       <div className="flex flex-1 flex-col gap-4 p-5">
