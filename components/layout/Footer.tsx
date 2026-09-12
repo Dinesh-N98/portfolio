@@ -8,8 +8,9 @@ const footerLinks = [
 
 const socialLinks = [
   { href: "https://github.com/Dinesh-N98", label: "GitHub" },
-  { href: "#", label: "LinkedIn" },
-  { href: "#", label: "Twitter / X" },
+  { href: "https://www.linkedin.com/in/d-narada/", label: "LinkedIn" },
+  { href: "https://x.com/DineshNarada98", label: "Twitter / X" },
+  { href: "mailto:kalyanadineshnarada@gmail.com", label: "Email" },
 ];
 
 export default function Footer() {
@@ -36,7 +37,7 @@ export default function Footer() {
               key={link.label}
               href={link.href}
               target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+              rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
               className="transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
             >
               {link.label}
