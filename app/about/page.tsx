@@ -42,6 +42,24 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <div className="mt-8 flex flex-wrap gap-3" aria-label="CV links">
+        <a
+          href="/resume.pdf"
+          download="Dinesh_Narada_Resume.pdf"
+          className="inline-flex rounded-md bg-accent px-5 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+        >
+          Download CV
+        </a>
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex rounded-md border border-accent/40 px-5 py-3 text-sm font-semibold text-accent transition-colors hover:border-accent hover:bg-accent/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+        >
+          Preview CV
+        </a>
+      </div>
+
       <section className="mt-16 border-t border-white/10 pt-16 md:mt-20 md:pt-20" aria-labelledby="focus-heading">
         <div className="max-w-2xl">
           <h2 id="focus-heading" className="text-2xl font-semibold tracking-tight">
