@@ -40,11 +40,11 @@ export default function ProjectCarousel({ projects, variant, languageStats = {} 
   }, [emblaApi]);
 
   if (projects.length === 0) {
-    return <EmptyState message={`No ${variant === "hot" ? "featured" : "recent"} projects yet.`} />;
+    return <EmptyState message={`No ${variant === "hot" ? "top" : "recent"} projects yet.`} />;
   }
 
   const slideSize = variant === "hot" ? "basis-full md:basis-1/2" : "basis-1/2 md:basis-1/3 lg:basis-1/4";
-  const carouselLabel = variant === "hot" ? "Featured projects" : "Recent projects";
+  const carouselLabel = variant === "hot" ? "Top projects" : "Recent projects";
 
   return (
     <div

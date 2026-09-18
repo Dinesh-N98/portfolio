@@ -19,7 +19,7 @@ platform.
 
 ## Features
 
-- Home page with Hot Projects and Recent Projects carousels, pulled live from GitHub
+- Home page with Top Projects and Recent Projects carousels, pulled live from GitHub
 - Projects grid with tag/language filtering and per-language usage tooltips
 - Blog with Markdown-rendered posts
 - About page with bio, skills, and a "My Journey" section

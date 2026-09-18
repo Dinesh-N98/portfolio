@@ -27,7 +27,7 @@ export default async function Home() {
       <section className="border-b border-white/10 py-16 md:py-20" aria-labelledby="hot-projects-heading">
         <div className="mb-8 flex items-end justify-between gap-4">
           <h2 id="hot-projects-heading" className="text-3xl font-semibold tracking-tight">
-            Hot Projects
+            Top Projects
           </h2>
           <Link
             href="/projects"
