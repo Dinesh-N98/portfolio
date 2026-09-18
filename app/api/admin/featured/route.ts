@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { revalidatePath } from "next/cache";
 import { getFeaturedSlugs, setFeaturedSlugs } from "@/src/lib/redis";
 import { NextResponse } from "next/server";
 
@@ -20,5 +21,7 @@ export async function POST(request: Request) {
   }
 
   await setFeaturedSlugs(body.slugs);
+  revalidatePath("/");
+  revalidatePath("/projects");
   return NextResponse.json({ success: true, slugs: body.slugs });
 }
